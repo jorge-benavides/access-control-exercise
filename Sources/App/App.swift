@@ -1,27 +1,27 @@
 import Foundation
 import Books
 
-class App: BookRepositoryDelegate {
+open class App: BookRepositoryDelegate {
     
-    let repo = BookRepository()
-    var books: Array<Book> = []
+    private let repo = BookRepository()
+    private var books: Array<Book> = []
 
-    init() {
+    public init() {
         repo.delegate = self
         repo.loadBooks()
     }
 
-    func displayBooks() -> [Book] {
+    public func displayBooks() -> [Book] {
         return books
     }
     
-    func getBook(id: String) -> Book? {
+    public func getBook(id: String) -> Book? {
         return books.first(where: { book in
             book.id == id
         })
     }
 
-    func repositoryDidLoadBooks(_ books: [Book]) {
+    open func repositoryDidLoadBooks(_ books: [Book]) {
         self.books = books
     }
 }

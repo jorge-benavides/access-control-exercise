@@ -1,20 +1,20 @@
 import Foundation
 import API
 
-protocol BookRepositoryDelegate: AnyObject {
+public protocol BookRepositoryDelegate: AnyObject {
     func repositoryDidLoadBooks(_ books: [Book])
 }
 
-class BookRepository {
-    weak var delegate: BookRepositoryDelegate?
+public class BookRepository {
+    weak public var delegate: BookRepositoryDelegate?
 
-    let url = "https://raw.githubusercontent.com/wizeline/mock-api/main/bookstore/v1/books.json"
-    let decodeType = [Book].self
-    let api = API(session: .shared)
+    private let url = "https://raw.githubusercontent.com/wizeline/mock-api/main/bookstore/v1/books.json"
+    private let decodeType = [Book].self
+    private let api = API(session: .shared)
 
-    init() { }
+    public init() { }
 
-    func loadBooks() {
+    public func loadBooks() {
         guard let url = URL(string: url) else { return }
         api.request(url: url) { [weak delegate] (data: Data?, error: Error?) in
             let books: [Book]
@@ -28,9 +28,9 @@ class BookRepository {
     }
 }
 
-struct Book: Decodable {
-    var id: String
-    var title: String
-    var description: String
+public struct Book: Decodable {
+    public var id: String
+    public var title: String
+    public var description: String
     var cover: String
 }

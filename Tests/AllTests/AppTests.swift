@@ -1,5 +1,7 @@
 import XCTest
-@testable import App
+import App
+//@testable import App
+import Books
 
 class AppTest: App {
     var expectation: XCTestExpectation?
